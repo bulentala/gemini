@@ -1,0 +1,37 @@
+{
+  // 1. Yerleşik Araç Yapılandırması (coreTools ve excludeTools)
+
+  "coreTools": [
+    // Next.js projelerinde sıkça kullanılan güvenli terminal komutlarına izin ver
+    // 'npm' yerine 'pnpm' kullanacak şekilde güncellendi
+    "ShellTool(pnpm install)",
+    "ShellTool(pnpm run test)",
+    "ShellTool(pnpm run build)",
+    "ShellTool(type)", // Dosya içeriğini okumak için 'type' komutuna izin verir
+    "FileTool(read)", // Dosya okuma [7]
+    "FileTool(write)" // Dosya yazma [7]
+  ],
+
+  // Modelin kullanmasını istemediğiniz potansiyel olarak tehlikeli komutları hariç tutun [7, 11]
+  "excludeTools": [
+    "ShellTool(rm -rf)", // Tehlikeli silme komutunu engeller [7]
+    "ShellTool(sudo)" // Yönetici yetkisi gerektiren komutları engeller
+    // Başka bir aracın (örneğin FileTool) belirli bir komutunu da hariç tutabilirsiniz
+  ],
+
+  // 2. Otomatik Onay (Yolo Modu) - SADECE GÜVENİLİR ÇALIŞMA ALANLARI İÇİN [8]
+  // UYARI: Bu, temsilcinin makinenizin dosya sistemine ve terminale izin almadan erişmesine yol açar [8, 12].
+  "geminicodeassist.agentYoloMode": true,
+
+  // 3. MCP Sunucularını Yapılandırma (Opsiyonel, Gelişmiş Yetenekler İçin) [6, 13]
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        // Lütfen bu jetonu gerçek bir kişisel erişim jetonu ile değiştirin ve gizli tutun.
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_example_personal_access_token12345"
+      }
+    }
+  }
+}
